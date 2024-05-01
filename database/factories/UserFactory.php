@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -18,14 +19,25 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'title' => fake()->title(),
+            'forename' => fake()->firstName(),
+            'last_name' => fake()->lastName(),
+            'dob' => fake()->date(),
+            'country' => fake()->country(),
+            'city' => fake()->city(),
+            'mobile_number' => fake()->phoneNumber(),
+            'street_address_line_1' => fake()->streetAddress(),
+            'street_address_line_2' => fake()->address(),
+            'post_code' => fake()->postcode(),
+            'last_logged_in' => fake()->dateTime(),
+            'ip_address' => fake()->ipv4(),
+            'mac_address' => fake()->macAddress(),
+            'user_agent' => fake()->userAgent(),
+            'role_id' => '2',
             'email' => fake()->unique()->safeEmail(),
-            'company' => fake()->company(),
-            'role' => fake()->name() . '_role',
-            'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' =>  fake()->password(),
             'remember_token' => Str::random(10),
-            'created_at' => now()
+            'created_at' => fake()->dateTime()
         ];
     }
 

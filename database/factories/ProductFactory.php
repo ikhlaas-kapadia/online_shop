@@ -20,9 +20,9 @@ class ProductFactory extends Factory
             //
             'name' => fake()->name() . '_product',
             'category' => fake()->name() . '_category',
-            'company' => fake()->company(),
-            'image' => fake()->image(),
-            'title' => fake()->sentence(),
+            'company' => fake()->company() . '_company_name',
+            'image' => fake()->image() . 'image_path',
+            'title' => fake()->title(),
             'description' => fake()->paragraph(5),
             'keywords' => fake()->name() . '_keywords',
             'price' => fake()->randomNumber(),

@@ -3,10 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Profile;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -18,9 +20,23 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'title',
+        'forename',
+        'last_name',
+        'dob',
+        'country',
+        'city',
+        'mobile_number',
+        'street_address_line_1',
+        'street_address_line_2',
+        'post_code',
+        'last_logged_in',
+        'ip_address',
+        'mac_address',
+        'user_agent',
+        'role_id',
         'email',
-        'password',
+        'created_at'
     ];
 
     /**
@@ -42,4 +58,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function profile()
+    {
+        // return $this->hasOne(Profile::class);
+        return $this->hasOne(Profile::class);
+
+
+    }
 }

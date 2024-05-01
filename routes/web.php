@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\ProductController;
+use App\Models\Listing;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\Listing;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +19,14 @@ use App\Models\Listing;
 
 // You can pass in php file or blade file as a view.
 //All Listings
-Route::get('/', function () {
-    return view('listings',[
-        'heading' => 'Latest Listings',
-        'listings' => Listing::all()
-    ]);
-});
+// Route::get('/', function () {
+//     return view('listings',[
+//         'heading' => 'Latest Listings',
+//         'listings' => Listing::all()
+//     ]);
+// });
+
+Route::get('/', [ProductController::class, 'index']); 
 
 
 Route::get('/hello', function(){
@@ -31,15 +35,25 @@ Route::get('/hello', function(){
     ->header('foo', 'bar');
 });
 
-Route::get('/listings/{id}', function($id){
+// Route::get('/listings/{id}', function($id){
+//     // dd(Listing::find($id));
+//     // dd($id);
+//     return view('listing', [
+//         'listing' => Listing::find($id)
+//     ]);
+// })->where('id', '[0-9]+');
+
+Route::get('/products/{product}', function(Product $product){
     // dd(Listing::find($id));
     // dd($id);
-    return view('listing', [
-        'listing' => Listing::find($id)
+    return view('product-listings/product-listing', [
+        // 'product' => Product::find($id)
+        'product' => $product
     ]);
 })->where('id', '[0-9]+');
 
+
 Route::get('/search', function(Request $request){
-    // dd($request);
+    dd($request);
     return response($request->name .' ' . $request->city);
 });
